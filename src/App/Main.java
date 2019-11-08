@@ -38,7 +38,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         viewPanel("card4");
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     void viewPanel(String cname) {
@@ -140,6 +140,10 @@ public class Main extends javax.swing.JFrame {
         jTable3 = new javax.swing.JTable();
         books_1Query2 = java.beans.Beans.isDesignTime() ? null : BooksPUEntityManager.createQuery("SELECT b FROM Books_1 b");
         books_1List2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query2.getResultList();
+        books_1Query = java.beans.Beans.isDesignTime() ? null : BooksPUEntityManager.createQuery("SELECT b FROM Books_1 b");
+        books_1List = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query.getResultList();
+        books_1Query1 = java.beans.Beans.isDesignTime() ? null : BooksPUEntityManager.createQuery("SELECT b FROM Books_1 b");
+        books_1List1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -264,14 +268,14 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(350, 350, 350)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(537, Short.MAX_VALUE))
+                .addContainerGap(567, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(199, 199, 199)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5, "card4");
@@ -292,11 +296,29 @@ public class Main extends javax.swing.JFrame {
 
         jLabel14.setText("Image:");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.id}"), jTextField7, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
             }
         });
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.name}"), jTextField8, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.author}"), jTextField9, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.language}"), jTextField10, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.category}"), jTextField11, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.price}"), jTextField12, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +328,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         BtnChooseImage1.setText("Choose Image");
+        BtnChooseImage1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnChooseImage1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -314,22 +341,27 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Name", "Author", "Language", "Category", "Price"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, books_1List1, jTable2);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
+        columnBinding.setColumnName("Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${author}"));
+        columnBinding.setColumnName("Author");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${language}"));
+        columnBinding.setColumnName("Language");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${category}"));
+        columnBinding.setColumnName("Category");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
+        columnBinding.setColumnName("Price");
+        columnBinding.setColumnClass(Double.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -379,16 +411,16 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(jTextField11)
                                     .addComponent(jTextField12)
                                     .addComponent(lbl_Image1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addGap(64, 64, 64))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -419,9 +451,7 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addComponent(lbl_Image1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -430,7 +460,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jButton3))
                     .addComponent(BtnChooseImage1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel4, "card3");
@@ -521,7 +551,7 @@ public class Main extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnInsert, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnClear, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addContainerGap(347, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,7 +591,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(btnClear))
                     .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3, "card2");
@@ -669,7 +699,32 @@ public class Main extends javax.swing.JFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
+        txt_id.setText(null);
+        txt_name.setText(null);
+        txt_author.setText(null);
+        txt_lan.setText(null);
+        txt_cat.setText(null);
+        txt_price.setText(null);
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void BtnChooseImage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnChooseImage1ActionPerformed
+        // TODO add your handling code here:
+        int r = jFileChooser1.showDialog(this, "Select");
+        if (r == JFileChooser.APPROVE_OPTION) {
+            Toolkit tk = Toolkit.getDefaultToolkit();
+
+            Image img = tk.getImage(jFileChooser1.
+                    getSelectedFile().getAbsolutePath());
+
+            Image sclImg = img.getScaledInstance(
+                    lbl_Image1.getWidth(), lbl_Image1.getHeight(),
+                    Image.SCALE_DEFAULT);
+
+            lbl_Image1.setIcon(new ImageIcon(sclImg));
+        } else {
+            lbl_Image1.setIcon(new ImageIcon());
+        }
+    }//GEN-LAST:event_BtnChooseImage1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -710,7 +765,11 @@ public class Main extends javax.swing.JFrame {
     private javax.persistence.EntityManager BooksPUEntityManager;
     private javax.swing.JButton BtnChooseImage;
     private javax.swing.JButton BtnChooseImage1;
+    private java.util.List<App.Books_1> books_1List;
+    private java.util.List<App.Books_1> books_1List1;
     private java.util.List<App.Books_1> books_1List2;
+    private javax.persistence.Query books_1Query;
+    private javax.persistence.Query books_1Query1;
     private javax.persistence.Query books_1Query2;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnInsert;
