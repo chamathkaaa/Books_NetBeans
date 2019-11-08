@@ -588,7 +588,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
-       Books b1 = new Books();
+       Books_1 b1 = new Books_1();
        
         b1.setId(Integer.parseInt(txt_id.getText()));
         b1.setName(txt_name.getText());
@@ -598,7 +598,7 @@ public class Main extends javax.swing.JFrame {
         b1.setPrice(Double.parseDouble(txt_price.getText()));
         
         if(jFileChooser1.getSelectedFile() != null){
-            b1.setPicture(jFileChooser1.getSelectedFile().getAbsolutePath());
+            b1.setImage(jFileChooser1.getSelectedFile().getAbsolutePath());
         }
 
         BooksPUEntityManager.getTransaction().begin();
@@ -618,6 +618,7 @@ public class Main extends javax.swing.JFrame {
         txt_lan.setText(null);
         txt_cat.setText(null);
         txt_price.setText(null);
+        lbl_Image.setText(null);
 
     }//GEN-LAST:event_btnInsertActionPerformed
 
