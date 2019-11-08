@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -93,7 +95,35 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }
+    
 
+    public void RefreshTable(List mList){
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, mList, jTable3);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
+        columnBinding.setColumnName("Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${author}"));
+        columnBinding.setColumnName("Author");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${language}"));
+        columnBinding.setColumnName("Language");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${category}"));
+        columnBinding.setColumnName("Category");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
+        columnBinding.setColumnName("Price");
+        columnBinding.setColumnClass(Double.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${image}"));
+        columnBinding.setColumnName("Image");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,8 +132,14 @@ public class Main extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        BooksPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("BooksPU").createEntityManager();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        books_1Query2 = java.beans.Beans.isDesignTime() ? null : BooksPUEntityManager.createQuery("SELECT b FROM Books_1 b");
+        books_1List2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query2.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -148,6 +184,32 @@ public class Main extends javax.swing.JFrame {
         btnInsert = new javax.swing.JButton();
         BtnChooseImage = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, books_1List2, jTable3);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
+        columnBinding.setColumnName("Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${author}"));
+        columnBinding.setColumnName("Author");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${language}"));
+        columnBinding.setColumnName("Language");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${category}"));
+        columnBinding.setColumnName("Category");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
+        columnBinding.setColumnName("Price");
+        columnBinding.setColumnClass(Double.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${image}"));
+        columnBinding.setColumnName("Image");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        jScrollPane3.setViewportView(jTable3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(918, 482));
@@ -519,6 +581,8 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -526,33 +590,34 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
        Books b1 = new Books();
        
-        p.setId(jTextField4.getText());
-        p.setBrand(jTextField8.getText());
-        p.setName(jTextField5.getText());
-        p.setReleasedYear(jTextField6.getText());
-        p.setPrice(Double.parseDouble(jTextField7.getText()));
-        if (jFileChooser1.getSelectedFile() != null) {
-            p.setImage(jFileChooser1.getSelectedFile().
-                    getAbsolutePath());
-        }
-        
         b1.setId(Integer.parseInt(txt_id.getText()));
+        b1.setName(txt_name.getText());
+        b1.setAuthor(txt_author.getText());
+        b1.setLanguage(txt_lan.getText());
+        b1.setCategory(txt_cat.getText());
+        b1.setPrice(Double.parseDouble(txt_price.getText()));
+        
+        if(jFileChooser1.getSelectedFile() != null){
+            b1.setPicture(jFileChooser1.getSelectedFile().getAbsolutePath());
+        }
+
+        BooksPUEntityManager.getTransaction().begin();
+        BooksPUEntityManager.persist(b1);
+        BooksPUEntityManager.getTransaction().commit();
+        
+        JOptionPane.showMessageDialog(this, "Book Inserted", "Info", 1);
+
+        books_1List2.clear();
+        books_1List2 = books_1Query2.getResultList();
+        RefreshTable(books_1List2);
         
 
-        Mobile_AppPUEntityManager.getTransaction().begin();
-        Mobile_AppPUEntityManager.persist(p);
-        Mobile_AppPUEntityManager.getTransaction().commit();
-        JOptionPane.showMessageDialog(this, "Record Inserted", "Info", 1);
-
-        phoneList.clear();
-        phoneList = phoneQuery.getResultList();
-        refreshTable(phoneList);
-
-        jTextField4.setText(null);
-        jTextField8.setText(null);
-        jTextField5.setText(null);
-        jTextField6.setText(null);
-        jTextField7.setText(null);
+        txt_id.setText(null);
+        txt_name.setText(null);
+        txt_author.setText(null);
+        txt_lan.setText(null);
+        txt_cat.setText(null);
+        txt_price.setText(null);
 
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -641,8 +706,11 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager BooksPUEntityManager;
     private javax.swing.JButton BtnChooseImage;
     private javax.swing.JButton BtnChooseImage1;
+    private java.util.List<App.Books_1> books_1List2;
+    private javax.persistence.Query books_1Query2;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton jButton2;
@@ -671,7 +739,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -686,5 +756,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField txt_lan;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_price;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
