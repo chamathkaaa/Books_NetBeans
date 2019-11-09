@@ -142,8 +142,6 @@ public class Main extends javax.swing.JFrame {
         books_1List2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query2.getResultList();
         books_1Query = java.beans.Beans.isDesignTime() ? null : BooksPUEntityManager.createQuery("SELECT b FROM Books_1 b");
         books_1List = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query.getResultList();
-        books_1Query1 = java.beans.Beans.isDesignTime() ? null : BooksPUEntityManager.createQuery("SELECT b FROM Books_1 b");
-        books_1List1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : books_1Query1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -165,7 +163,7 @@ public class Main extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         lbl_Image1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         BtnChooseImage1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -320,10 +318,10 @@ public class Main extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable2, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.price}"), jTextField12, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -341,7 +339,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, books_1List1, jTable2);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, books_1List, jTable2);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
@@ -360,6 +358,9 @@ public class Main extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
         columnBinding.setColumnName("Price");
         columnBinding.setColumnClass(Double.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${image}"));
+        columnBinding.setColumnName("Image");
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane2.setViewportView(jTable2);
@@ -377,11 +378,11 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(68, 68, 68)
                                 .addComponent(BtnChooseImage1)
                                 .addGap(101, 101, 101)
-                                .addComponent(jButton2))
+                                .addComponent(btnUpdate))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(270, 270, 270)
                                 .addComponent(jButton3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(597, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -411,16 +412,16 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(jTextField11)
                                     .addComponent(jTextField12)
                                     .addComponent(lbl_Image1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -451,12 +452,14 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addComponent(lbl_Image1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jButton2)
+                        .addComponent(btnUpdate)
                         .addGap(4, 4, 4)
                         .addComponent(jButton3))
                     .addComponent(BtnChooseImage1))
@@ -641,6 +644,10 @@ public class Main extends javax.swing.JFrame {
         books_1List2 = books_1Query2.getResultList();
         RefreshTable(books_1List2);
         
+        //books_1List.clear();
+        books_1List = books_1Query.getResultList();
+        RefreshTable(books_1List);
+        
 
         txt_id.setText(null);
         txt_name.setText(null);
@@ -660,9 +667,44 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Books_1 b = BooksPUEntityManager.find(Books_1.class, txt_id.getText());
+        
+        int r = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to update " +b.getName(),"Confirmation",JOptionPane.YES_NO_CANCEL_OPTION);
+        
+            if(r == JOptionPane.YES_OPTION)
+            {
+                b.setId(Integer.parseInt(txt_id.getText()));
+                b.setName(txt_name.getText());
+                b.setAuthor(txt_author.getText());
+                b.setLanguage(txt_lan.getText());
+                b.setCategory(txt_cat.getText());
+                b.setPrice(Double.parseDouble(txt_price.getText()));
+                
+                if(jFileChooser1.getSelectedFile() != null){
+                    b.setImage(jFileChooser1.getSelectedFile().getAbsolutePath());
+                }
+        
+            BooksPUEntityManager.getTransaction().begin();
+            BooksPUEntityManager.persist(b);
+            BooksPUEntityManager.getTransaction().commit();
+            JOptionPane.showMessageDialog(rootPane, b.getName()+ " Updated","Info",1);
+            
+            books_1List2.clear();
+            books_1List2 = books_1Query2.getResultList();
+            RefreshTable(books_1List2);
+            
+            txt_id.setText(null);
+            txt_name.setText(null);
+            txt_author.setText(null);
+            txt_lan.setText(null);
+            txt_cat.setText(null);
+            txt_price.setText(null);
+            
+            
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -766,14 +808,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton BtnChooseImage;
     private javax.swing.JButton BtnChooseImage1;
     private java.util.List<App.Books_1> books_1List;
-    private java.util.List<App.Books_1> books_1List1;
     private java.util.List<App.Books_1> books_1List2;
     private javax.persistence.Query books_1Query;
-    private javax.persistence.Query books_1Query1;
     private javax.persistence.Query books_1Query2;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnInsert;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
