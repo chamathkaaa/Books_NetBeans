@@ -165,7 +165,7 @@ public class Main extends javax.swing.JFrame {
         lbl_Image1 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         BtnChooseImage1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -332,10 +332,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Delete");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -381,7 +381,7 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(btnUpdate))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(270, 270, 270)
-                                .addComponent(jButton3)))
+                                .addComponent(btnDelete)))
                         .addContainerGap(597, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,7 +461,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(btnUpdate)
                         .addGap(4, 4, 4)
-                        .addComponent(jButton3))
+                        .addComponent(btnDelete))
                     .addComponent(BtnChooseImage1))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
@@ -669,7 +669,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        Books_1 b = BooksPUEntityManager.find(Books_1.class, txt_id.getText());
+        Books_1 b = BooksPUEntityManager.find(Books_1.class, Integer.parseInt(txt_id.getText()));
         
         int r = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to update " +b.getName(),"Confirmation",JOptionPane.YES_NO_CANCEL_OPTION);
         
@@ -706,9 +706,35 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        //Books_1 b = BooksPUEntityManager.find(Books_1.class,Integer.parseInt(txt_id.getText()));
+        //Books_1 b = BooksPUEntityManager.find(Books_1.class, Integer.parseInt(txt_id.getText()));
+        Books b = BooksPUEntityManager.find(Books.class, Integer.parseInt(txt_id.getText()));
+        
+        int r = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to delete " +b.getName(),"Confirmation",JOptionPane.YES_NO_CANCEL_OPTION);
+        
+        if(r == JOptionPane.YES_OPTION)
+        {
+            BooksPUEntityManager.getTransaction().begin();
+            BooksPUEntityManager.remove(b);
+            BooksPUEntityManager.getTransaction().commit();
+            JOptionPane.showMessageDialog(rootPane, b.getName()+ "Deleted","Info",1);
+            
+            books_1List2.clear();
+            books_1List2 = books_1Query2.getResultList();
+            RefreshTable(books_1List2);
+            
+            txt_id.setText(null);
+            txt_name.setText(null);
+            txt_author.setText(null);
+            txt_lan.setText(null);
+            txt_cat.setText(null);
+            txt_price.setText(null);
+            
+            
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -812,9 +838,9 @@ public class Main extends javax.swing.JFrame {
     private javax.persistence.Query books_1Query;
     private javax.persistence.Query books_1Query2;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JFileChooser jFileChooser1;
