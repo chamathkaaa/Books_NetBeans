@@ -58,8 +58,6 @@ public class Main extends javax.swing.JFrame {
         BookStore1PUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("BookStore1PU").createEntityManager();
         booksQuery = java.beans.Beans.isDesignTime() ? null : BookStore1PUEntityManager.createQuery("SELECT b FROM Books b");
         booksList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : booksQuery.getResultList();
-        booksQuery1 = java.beans.Beans.isDesignTime() ? null : BookStore1PUEntityManager.createQuery("SELECT b FROM Books b");
-        booksList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : booksQuery1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -367,6 +365,38 @@ public class Main extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        Books b1 = BookStore1PUEntityManager.find(Books.class, Integer.parseInt(txtID.getText()));
+        
+        int r = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to update" +b1.getBookname(),"Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+        
+        
+        if(r == JOptionPane.YES_OPTION){
+            
+            b1.setBookname(txtName.getText());
+            b1.setAuthor(txtAuthor.getText());
+            b1.setCategory(txtCat.getText());
+            b1.setPrice(Double.parseDouble(txtPrice.getText()));
+            b1.setStock(Integer.parseInt(txtStock.getText()));
+            
+            BookStore1PUEntityManager.getTransaction().begin();
+            BookStore1PUEntityManager.persist(b1);
+            BookStore1PUEntityManager.getTransaction().commit();
+            
+            JOptionPane.showMessageDialog(rootPane, b1.getBookname()+ " Updated", "Info", 1);
+            
+            booksList.clear();
+            booksList = booksQuery.getResultList();
+            refreshTable(booksList);
+            
+            txtID.setText(null);
+            txtName.setText(null);
+            txtAuthor.setText(null);
+            txtCat.setText(null);
+            txtPrice.setText(null);
+            txtStock.setText(null);
+            
+        }        
+      
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -426,9 +456,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager BookStore1PUEntityManager;
     private java.util.List<App.Books> booksList;
-    private java.util.List<App.Books> booksList1;
     private javax.persistence.Query booksQuery;
-    private javax.persistence.Query booksQuery1;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
