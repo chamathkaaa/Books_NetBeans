@@ -184,6 +184,11 @@
             <Property name="text" type="java.lang.String" value="Book ID"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Book Name"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Author"/>
@@ -206,7 +211,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtID">
           <BindingProperties>
-            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.bookid}" target="txtID" targetPath="text" updateStrategy="0" immediately="false">
+            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.bookid}" target="txtID" targetPath="text" updateStrategy="1" immediately="false">
               <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
             </BindingProperty>
           </BindingProperties>
@@ -214,9 +219,19 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JTextField" name="txtName">
+          <BindingProperties>
+            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.bookname}" target="txtName" targetPath="text" updateStrategy="1" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
+          </BindingProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
+          </Events>
+        </Component>
         <Component class="javax.swing.JTextField" name="txtAuthor">
           <BindingProperties>
-            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.author}" target="txtAuthor" targetPath="text" updateStrategy="0" immediately="false">
+            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.author}" target="txtAuthor" targetPath="text" updateStrategy="1" immediately="false">
               <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
             </BindingProperty>
           </BindingProperties>
@@ -226,7 +241,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCat">
           <BindingProperties>
-            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.category}" target="txtCat" targetPath="text" updateStrategy="0" immediately="false">
+            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.category}" target="txtCat" targetPath="text" updateStrategy="1" immediately="false">
               <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
             </BindingProperty>
           </BindingProperties>
@@ -236,7 +251,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtPrice">
           <BindingProperties>
-            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.price}" target="txtPrice" targetPath="text" updateStrategy="0" immediately="false">
+            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.price}" target="txtPrice" targetPath="text" updateStrategy="1" immediately="false">
               <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
             </BindingProperty>
           </BindingProperties>
@@ -330,11 +345,11 @@
                   </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
               <BindingProperties>
-                <BindingProperty name="elements" source="booksList" target="jTable1" targetPath="elements" updateStrategy="0" immediately="true">
+                <BindingProperty name="elements" source="booksList" target="jTable1" targetPath="elements" updateStrategy="1" immediately="true">
                   <Subbinding sourcePath="${bookid}">
                     <BindingParameter name="NAME" value="Bookid"/>
                     <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
@@ -370,21 +385,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Book Name"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtName">
-          <BindingProperties>
-            <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement_IGNORE_ADJUSTING.bookname}" target="txtName" targetPath="text" updateStrategy="0" immediately="false">
-              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
-            </BindingProperty>
-          </BindingProperties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
