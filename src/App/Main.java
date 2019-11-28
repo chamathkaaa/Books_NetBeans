@@ -403,6 +403,31 @@ public class Main extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        
+        Books b1 = BookStore1PUEntityManager.find(Books.class, txtID.getText());
+        
+        int r = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to delete " +b1.getBookname(), "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+        
+        if(r == JOptionPane.YES_OPTION){
+            BookStore1PUEntityManager.getTransaction().begin();
+            BookStore1PUEntityManager.remove(b1);
+            BookStore1PUEntityManager.getTransaction().commit();
+            
+            JOptionPane.showMessageDialog(rootPane, b1.getBookname() + " Deleted", "Info", 1);
+            
+            booksList.clear();
+            booksList = booksQuery.getResultList();
+            refreshTable(booksList);
+            
+            txtID.setText(null);
+            txtName.setText(null);
+            txtAuthor.setText(null);
+            txtCat.setText(null);
+            txtPrice.setText(null);
+            txtStock.setText(null);
+        }       
+        
+  
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
