@@ -404,7 +404,7 @@ public class Main extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         
-        Books b1 = BookStore1PUEntityManager.find(Books.class, txtID.getText());
+        Books b1 = BookStore1PUEntityManager.find(Books.class, Integer.parseInt(txtID.getText()));
         
         int r = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to delete " +b1.getBookname(), "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
         
