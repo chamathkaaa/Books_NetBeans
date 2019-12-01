@@ -80,6 +80,7 @@ public class Main extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,27 +88,27 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Book ID");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(120, 80, 37, 14);
+        jLabel1.setBounds(97, 74, 60, 20);
 
         jLabel6.setText("Book Name");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(120, 110, 53, 14);
+        jLabel6.setBounds(100, 110, 80, 20);
 
         jLabel2.setText("Author");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(120, 150, 33, 14);
+        jLabel2.setBounds(100, 150, 50, 14);
 
         jLabel3.setText("Category");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(120, 200, 45, 14);
+        jLabel3.setBounds(100, 190, 60, 14);
 
         jLabel4.setText("Price");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(120, 250, 23, 14);
+        jLabel4.setBounds(100, 240, 40, 14);
 
         jLabel5.setText("Stock");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(120, 300, 26, 14);
+        jLabel5.setBounds(100, 280, 50, 14);
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement_IGNORE_ADJUSTING.stock}"), txtStock, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -118,7 +119,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtStock);
-        txtStock.setBounds(210, 300, 117, 20);
+        txtStock.setBounds(210, 270, 117, 30);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement_IGNORE_ADJUSTING.price}"), txtPrice, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -129,7 +130,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtPrice);
-        txtPrice.setBounds(210, 240, 117, 20);
+        txtPrice.setBounds(210, 230, 117, 30);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement_IGNORE_ADJUSTING.category}"), txtCat, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -140,7 +141,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtCat);
-        txtCat.setBounds(210, 190, 117, 20);
+        txtCat.setBounds(210, 190, 117, 30);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement_IGNORE_ADJUSTING.author}"), txtAuthor, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -151,7 +152,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtAuthor);
-        txtAuthor.setBounds(210, 140, 117, 20);
+        txtAuthor.setBounds(210, 150, 117, 30);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement_IGNORE_ADJUSTING.bookname}"), txtName, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -162,7 +163,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtName);
-        txtName.setBounds(210, 110, 117, 20);
+        txtName.setBounds(210, 110, 117, 30);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement_IGNORE_ADJUSTING.bookid}"), txtID, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -173,7 +174,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtID);
-        txtID.setBounds(210, 80, 117, 20);
+        txtID.setBounds(210, 70, 117, 30);
 
         btnInsert.setText("Insert");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +239,11 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2);
         jScrollPane2.setBounds(450, 20, 452, 402);
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/4.jpg"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(0, 0, 990, 500);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -253,15 +259,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         bindingGroup.bind();
@@ -453,6 +455,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
