@@ -183,7 +183,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnInsert);
-        btnInsert.setBounds(110, 350, 61, 23);
+        btnInsert.setBounds(110, 350, 70, 30);
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +192,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnUpdate);
-        btnUpdate.setBounds(210, 350, 67, 23);
+        btnUpdate.setBounds(210, 350, 70, 30);
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +201,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnDelete);
-        btnDelete.setBounds(320, 350, 63, 23);
+        btnDelete.setBounds(313, 350, 70, 30);
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +210,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnClear);
-        btnClear.setBounds(220, 380, 57, 23);
+        btnClear.setBounds(210, 400, 70, 40);
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, booksList1, jTable1);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${bookid}"));
